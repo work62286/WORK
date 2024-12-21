@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinematographer Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Cinematographer</a>
+            <div class="nav-toggle" aria-label="Mobile Menu Toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#featured">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Capturing Life's Beautiful Moments</h1>
+            <p>Professional cinematography for weddings, events, and commercial projects</p>
+            <a href="#featured" class="cta-button">View My Work</a>
+        </div>
+        <div class="hero-overlay"></div>
+        <video 
+            class="hero-video" 
+            autoplay 
+            muted 
+            loop 
+            playsinline 
+            preload="metadata"
+        >
+            <source 
+                src="we.mp4" 
+                type="video/mp4"
+            >
+            Your browser does not support the video tag.
+        </video>
+    </section>
+
+    <!-- Featured Work Section -->
+<section id="featured" class="featured-work">
+    <div class="container">
+        <h2>My Featured Works</h2>
+        <div class="video-grid" id="video-grid">
+            <!-- Video items will be dynamically populated -->
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <iframe 
+                id="videoFrame" 
+                frameborder="0" 
+                allowfullscreen 
+                allow="autoplay; encrypted-media"
+            ></iframe>
+        </div>
+    </div>
+</section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <form id="contact-form" netlify>
+                <div class="form-group">
+                    <input 
+                        type="text" 
+                        name="name" 
+                        placeholder="Your Name" 
+                        required 
+                        aria-label="Name"
+                    >
+                </div>
+                <div class="form-group">
+                    <input 
+                        type="email" 
+                        name="email" 
+                        placeholder="Your Email" 
+                        required 
+                        aria-label="Email"
+                    >
+                </div>
+                <div class="form-group">
+                    <textarea 
+                        name="message" 
+                        placeholder="Your Message" 
+                        required 
+                        aria-label="Message"
+                    ></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+            <div class="contact-info">
+                <p>Email: hello@cinematographer.com</p>
+                <p>Phone: +1 (555) 123-4567</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Vimeo">
+                        <i class="fab fa-vimeo-v"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Cinematographer Portfolio. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
