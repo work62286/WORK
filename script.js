@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 'uLzdLHlta9E',
             title: 'Music Video',
-            thumbnail: `https://img.youtube.com/vi/JGwWNGJdvx8/maxresdefault.jpg`
+            thumbnail: `https://i.ytimg.com/vi/uLzdLHlta9E/oar2.jpg?sqp=-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&rs=AOn4CLDB8ErwT3G6wqMqfQ-bwO4cAsKa9Q`
         }
     ];
 
