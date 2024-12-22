@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const CHANNEL_ID = 'UCsFTeOmrtn4GOmZUHqdHUEg';
-    const MAX_RESULTS = 4;
+    const MAX_RESULTS = 20; // Increase the number of results to fetch more videos
     const PROXY_URL = 'https://api.allorigins.win/get?url=';
 
     // Fetch videos from YouTube RSS feed using a proxy
