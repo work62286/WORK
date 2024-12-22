@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
             thumbnail: 'https://img.youtube.com/vi/JGwWNGJdvx8/maxresdefault.jpg'
         },
         {
-            id: 'uLzdLHlta9E',
+            id: 'DRRPul-CeqE',
             title: 'Music Video',
-            thumbnail: `https://i.ytimg.com/vi/uLzdLHlta9E/oar2.jpg?sqp=-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&rs=AOn4CLDB8ErwT3G6wqMqfQ-bwO4cAsKa9Q`
+            thumbnail: `https://i.ytimg.com/vi/DRRPul-CeqE/oar2.jpg?sqp=-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&rs=AOn4CLASAio530BLWEsJgcYrs-SwhCPPFg`
         }
     ];
 
