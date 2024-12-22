@@ -50,74 +50,74 @@
     </section>
 
     <!-- Featured Work Section -->
-<section id="featured" class="featured-work">
-    <div class="container">
-        <h2>My Featured Works</h2>
-        <div class="video-grid" id="video-grid">
-            <!-- Video items will be dynamically populated -->
+    <section id="featured" class="featured-work">
+        <div class="container">
+            <h2>My Featured Works</h2>
+            <div class="video-grid" id="video-grid">
+                <!-- Video items will be dynamically populated -->
+            </div>
         </div>
-    </div>
 
-    <!-- Video Modal -->
-    <div id="videoModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <iframe 
-                id="videoFrame" 
-                frameborder="0" 
-                allowfullscreen 
-                allow="autoplay; encrypted-media"
-            ></iframe>
+        <!-- Video Modal -->
+        <div id="videoModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <iframe 
+                    id="videoFrame" 
+                    frameborder="0" 
+                    allowfullscreen 
+                    allow="autoplay; encrypted-media"
+                ></iframe>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Contact Section -->
-<section id="contact" class="contact">
-    <div class="container">
-        <h2>Get in Touch</h2>
-        <div class="contact-content">
-            <div class="contact-info">
-                <p>Email: work62286@gmail.com</p>
-                <p>Phone: +91 74149 27259 / +91 83290 67553</p>
-                <div class="social-links">
-                    <a href="#" class="social-icon" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="social-icon" aria-label="YouTube">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                    <a href="#" class="social-icon" aria-label="Vimeo">
-                        <i class="fab fa-vimeo-v"></i>
-                    </a>
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p>Email: work62286@gmail.com</p>
+                    <p>Phone: +91 74149 27259 / +91 83290 67553</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Vimeo">
+                            <i class "fab fa-vimeo-v"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form action="#" method="post" netlify>
+                        <input type="hidden" name="form-name" value="contact">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required>
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" required></textarea>
+                            <label for="message">Message</label>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
                 </div>
             </div>
-            <div class="contact-form">
-                <form action="#" method="post" netlify>
-                    <input type="hidden" name="form-name" value="contact">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" required>
-                        <label for="name">Name</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" required>
-                        <label for="email">Email</label>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" required></textarea>
-                        <label for="message">Message</label>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <footer>
         <p>&copy; 2023 Cinematographer Portfolio. All Rights Reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>

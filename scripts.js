@@ -99,6 +99,7 @@ window.addEventListener('scroll', () => {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
+    }
 });
 
 // Mobile navigation toggle
