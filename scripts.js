@@ -1,31 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Configuration for video projects
-    const videoProjects = [
-        {
-            id: 'dQw4w9WgXcQ',
-            title: 'Cinematic Wedding Film',
-            thumbnail: `https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg`
-        },
-        {
-            id: '9bZkp7q19f0',
-            title: 'Commercial Advertisement',
-            thumbnail: `https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg`
-        },
-        {
-            id: 'JGwWNGJdvx8',
-            title: 'Music Video',
-            thumbnail: `https://img.youtube.com/vi/JGwWNGJdvx8/maxresdefault.jpg`
-        },
-{
-            id: 'uLzdLHlta9E',
-            title: 'Music Video',
-            thumbnail: `https://img.youtube.com/vi/JGwWNGJdvx8/maxresdefault.jpg`
-        }
-        
-    ];
-
     // Video Grid Population
     const videoGrid = document.getElementById('video-grid');
+    const videoProjects = JSON.parse(videoGrid.dataset.videos);
+    
     videoProjects.forEach(project => {
         const videoItem = document.createElement('div');
         videoItem.classList.add('video-item');
