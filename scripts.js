@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const cacheVideoProjects = (videoProjects) => {
+        console.log('Caching video projects:', videoProjects); // Debug log
         localStorage.setItem(CACHE_KEY, JSON.stringify(videoProjects));
         localStorage.setItem(CACHE_EXPIRY_KEY, Date.now() + FETCH_INTERVAL);
     };
@@ -57,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const cachedData = localStorage.getItem(CACHE_KEY);
         const cacheExpiry = localStorage.getItem(CACHE_EXPIRY_KEY);
         if (cachedData && cacheExpiry && Date.now() < cacheExpiry) {
+            console.log('Using cached data:', cachedData); // Debug log
             return JSON.parse(cachedData);
         }
         return null;
@@ -64,6 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Populate Video Grid
     const populateVideoGrid = (videoProjects) => {
+        console.log('Populating video grid with:', videoProjects); // Debug log
         const videoGrid = document.getElementById('video-grid');
         videoGrid.innerHTML = ''; // Clear existing videos
         videoProjects.forEach(project => {
