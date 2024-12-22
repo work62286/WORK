@@ -1,78 +1,75 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Configuration for video projects
-    const videoProjects = [
-        {
-            id: 'dPS1Bd-RgE4',
-            title: 'Cinematic Film Clip',
-            thumbnail: 'https://i.ytimg.com/an_webp/dPS1Bd-RgE4/mqdefault_6s.webp?du=3000&sqp=CMSTn7sG&rs=AOn4CLDr8g7K3cgghmWv2rilpXxnHoekpg'
-        },
-        {
-            id: '9PE7qN2gqEo',
-            title: 'Clip',
-            thumbnail: 'https://i.ytimg.com/vi/9PE7qN2gqEo/oar2.jpg?sqp=-oaymwEkCJEDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&rs=AOn4CLAl9Mt-KrXIH2plrwjq3rSppNB_eA'
-        },
-        {
-            id: 'uLzdLHlta9E',
-            title: 'Microwave Clip Example',
-            thumbnail: 'https://i.ytimg.com/vi/uLzdLHlta9E/oar2.jpg?sqp=-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&rs=AOn4CLDB8ErwT3G6wqMqfQ-bwO4cAsKa9Q'
-        },
-        {
-            id: 'DRRPul-CeqE',
-            title: 'Travel #2',
-            thumbnail: `https://i.ytimg.com/vi/DRRPul-CeqE/oar2.jpg?sqp=-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&rs=AOn4CLASAio530BLWEsJgcYrs-SwhCPPFg`
-        }
-    ];
+    const CHANNEL_ID = 'UCsFTeOmrtn4GOmZUHqdHUEg';
+    const MAX_RESULTS = 4;
 
-    // Video Grid Population
-    const videoGrid = document.getElementById('video-grid');
-    videoProjects.forEach(project => {
-        const videoItem = document.createElement('div');
-        videoItem.classList.add('video-item');
-        videoItem.dataset.video = project.id; // Set data attribute for video ID
-        
-        videoItem.innerHTML = `
-            <div class="video-thumbnail">
-                <img src="${project.thumbnail}" alt="${project.title}">
-                <div class="play-button">
-                    <i class="fas fa-play"></i>
+    // Fetch videos from YouTube RSS feed
+    fetch(`https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`)
+        .then(response => response.text())
+        .then(data => {
+            const parser = new DOMParser();
+            const xml = parser.parseFromString(data, 'text/xml');
+            const items = xml.querySelectorAll('entry');
+            const videoProjects = Array.from(items).slice(0, MAX_RESULTS).map(item => ({
+                id: item.querySelector('yt\\:videoId').textContent,
+                title: item.querySelector('title').textContent,
+                thumbnail: item.querySelector('media\\:thumbnail').getAttribute('url')
+            }));
+            populateVideoGrid(videoProjects);
+        })
+        .catch(error => console.error('Error fetching videos:', error));
+
+    // Populate Video Grid
+    const populateVideoGrid = (videoProjects) => {
+        const videoGrid = document.getElementById('video-grid');
+        videoProjects.forEach(project => {
+            const videoItem = document.createElement('div');
+            videoItem.classList.add('video-item');
+            videoItem.dataset.video = project.id;
+
+            videoItem.innerHTML = `
+                <div class="video-thumbnail">
+                    <img src="${project.thumbnail}" alt="${project.title}">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
                 </div>
-            </div>
-            <h3>${project.title}</h3>
-        `;
-        
-        videoGrid.appendChild(videoItem);
-    });
+                <h3>${project.title}</h3>
+            `;
 
-    // Video Modal Functionality
-    const videoItems = document.querySelectorAll('.video-item');
-    const videoModal = document.getElementById('videoModal');
-    const videoFrame = document.getElementById('videoFrame');
-    const closeButton = document.querySelector('.close-button');
-
-    videoItems.forEach(item => {
-        item.addEventListener('click', () => {
-            const videoId = item.dataset.video;
-            videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0`;
-            videoModal.style.display = 'flex';
+            videoGrid.appendChild(videoItem);
         });
-    });
 
-    // Close Modal Functionality
-    const closeModal = () => {
-        videoModal.style.display = 'none';
-        videoFrame.src = ''; // Stop video when modal is closed
+        // Add event listeners for video items
+        const videoItems = document.querySelectorAll('.video-item');
+        const videoModal = document.getElementById('videoModal');
+        const videoFrame = document.getElementById('videoFrame');
+        const closeButton = document.querySelector('.close-button');
+
+        videoItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const videoId = item.dataset.video;
+                videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0`;
+                videoModal.style.display = 'flex';
+            });
+        });
+
+        // Close Modal
+        const closeModal = () => {
+            videoModal.style.display = 'none';
+            videoFrame.src = '';
+        };
+
+        closeButton.addEventListener('click', closeModal);
+
+        // Close modal when clicking outside
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                closeModal();
+            }
+        });
     };
 
-    closeButton.addEventListener('click', closeModal);
-    
-    // Close modal when clicking outside
-    videoModal.addEventListener('click', (e) => {
-        if (e.target === videoModal) {
-            closeModal();
-        }
-    });
-
-    // Navigation Toggle for Mobile
+    // Navigation Toggle
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
 
@@ -81,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         navToggle.classList.toggle('active');
     });
 
-    // Smooth Scrolling for Anchor Links
+    // Smooth Scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -102,7 +99,6 @@ window.addEventListener('scroll', () => {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
-    }
 });
 
 // Mobile navigation toggle
