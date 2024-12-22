@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const items = xml.getElementsByTagName('entry');
             console.log('Parsed XML items:', items); // Debug log
             const videoProjects = Array.from(items).slice(0, MAX_RESULTS).map(item => {
-                const videoIdElement = item.getElementsByTagName('yt:videoId')[0];
+                const videoIdElement = item.getElementsByTagName('yt:videoId')[0] || item.getElementsByTagName('yt\\:videoId')[0];
                 const titleElement = item.getElementsByTagName('title')[0];
-                const thumbnailElement = item.getElementsByTagName('media:thumbnail')[0];
+                const thumbnailElement = item.getElementsByTagName('media:thumbnail')[0] || item.getElementsByTagName('media\\:thumbnail')[0];
                 
                 if (!videoIdElement || !titleElement || !thumbnailElement) {
                     console.error('Missing element in item:', item);
