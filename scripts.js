@@ -1,20 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     const CHANNEL_ID = 'UCsFTeOmrtn4GOmZUHqdHUEg';
     const MAX_RESULTS = 4;
-    const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
+    const PROXY_URL = 'https://api.allorigins.win/get?url=';
 
     // Fetch videos from YouTube RSS feed using a proxy
-    fetch(`${PROXY_URL}https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`)
+    fetch(`${PROXY_URL}${encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`)}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            return response.text();
+            return response.json();
         })
         .then(data => {
-            console.log('Fetched data:', data); // Debug log
             const parser = new DOMParser();
-            const xml = parser.parseFromString(data, 'text/xml');
+            const xml = parser.parseFromString(data.contents, 'text/xml');
             const items = xml.querySelectorAll('entry');
             const videoProjects = Array.from(items).slice(0, MAX_RESULTS).map(item => ({
                 id: item.querySelector('yt\\:videoId').textContent,
