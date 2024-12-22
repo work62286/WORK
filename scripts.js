@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const CHANNEL_ID = 'UCsFTeOmrtn4GOmZUHqdHUEg';
     const MAX_RESULTS = 4;
+    const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
 
-    // Fetch videos from YouTube RSS feed
-    fetch(`https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`)
+    // Fetch videos from YouTube RSS feed using a proxy
+    fetch(`${PROXY_URL}https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`)
         .then(response => response.text())
         .then(data => {
             const parser = new DOMParser();
