@@ -5,8 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fetch videos from YouTube RSS feed using a proxy
     fetch(`${PROXY_URL}https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`)
-        .then(response => response.text())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
         .then(data => {
+            console.log('Fetched data:', data); // Debug log
             const parser = new DOMParser();
             const xml = parser.parseFromString(data, 'text/xml');
             const items = xml.querySelectorAll('entry');
@@ -15,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: item.querySelector('title').textContent,
                 thumbnail: item.querySelector('media\\:thumbnail').getAttribute('url')
             }));
+            console.log('Parsed video projects:', videoProjects); // Debug log
             populateVideoGrid(videoProjects);
         })
         .catch(error => console.error('Error fetching videos:', error));
