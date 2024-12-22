@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const CACHE_KEY = 'videoProjectsCache';
     const CACHE_EXPIRY_KEY = 'videoProjectsCacheExpiry';
 
-    const fetchVideos = () => {
+    const fetchVideos = (forceRefresh = false) => {
         // Fetch videos from YouTube RSS feed using a proxy
         fetch(`${PROXY_URL}${encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`)}`)
             .then(response => {
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }).filter(project => project !== null);
                 console.log('Parsed video projects:', videoProjects); // Debug log
                 const cachedVideoProjects = getCachedVideoProjects();
-                if (JSON.stringify(cachedVideoProjects) !== JSON.stringify(videoProjects)) {
+                if (forceRefresh || JSON.stringify(cachedVideoProjects) !== JSON.stringify(videoProjects)) {
                     console.log('Cache invalidated'); // Debug log
                     cacheVideoProjects(videoProjects);
                 }
@@ -126,6 +126,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Periodically fetch videos
     setInterval(fetchVideos, FETCH_INTERVAL);
+
+    // Handle refresh button click
+    const refreshButton = document.getElementById('refreshButton');
+    refreshButton.addEventListener('click', () => {
+        console.log('Refresh button clicked'); // Debug log
+        fetchVideos(true); // Force refresh
+    });
 
     // Navigation Toggle
     const navToggle = document.querySelector('.nav-toggle');
