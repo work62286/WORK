@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             id: 'DRRPul-CeqE',
-            title: 'Clio #2',
+            title: 'Clip #2',
             thumbnail: `https://i.ytimg.com/vi/DRRPul-CeqE/oar2.jpg?sqp=-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&rs=AOn4CLASAio530BLWEsJgcYrs-SwhCPPFg`
         }
     ];
