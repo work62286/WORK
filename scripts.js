@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const CHANNEL_ID = 'UCsFTeOmrtn4GOmZUHqdHUEg';
-    const MAX_RESULTS = 20; // Increase the number of results to fetch more videos
+    const MAX_RESULTS = 50; // Increase the number of results to fetch more videos
     const PROXY_URL = 'https://api.allorigins.win/get?url=';
     const FETCH_INTERVAL = 300000; // Fetch every 5 minutes (in milliseconds)
     const CACHE_KEY = 'videoProjectsCache';
