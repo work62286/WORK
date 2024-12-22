@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Configuration for video projects
     const videoProjects = [
         {
-            id: 'dQw4w9WgXcQ',
+            id: 'dPS1Bd-RgE4',
             title: 'Cinematic Wedding Film',
-            thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg'
+            thumbnail: 'https://i.ytimg.com/an_webp/dPS1Bd-RgE4/mqdefault_6s.webp?du=3000&sqp=CMSTn7sG&rs=AOn4CLDr8g7K3cgghmWv2rilpXxnHoekpg'
         },
         {
             id: '9bZkp7q19f0',
