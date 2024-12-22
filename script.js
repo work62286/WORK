@@ -7,9 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
             thumbnail: 'https://i.ytimg.com/an_webp/dPS1Bd-RgE4/mqdefault_6s.webp?du=3000&sqp=CMSTn7sG&rs=AOn4CLDr8g7K3cgghmWv2rilpXxnHoekpg'
         },
         {
-            id: '9bZkp7q19f0',
-            title: 'Commercial Advertisement',
-            thumbnail: 'https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg'
+            id: '9PE7qN2gqEo',
+            title: 'Clip',
+            thumbnail: 'https://i.ytimg.com/vi/9PE7qN2gqEo/oar2.jpg?sqp=-oaymwEkCJEDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&rs=AOn4CLAl9Mt-KrXIH2plrwjq3rSppNB_eA'
         },
         {
             id: 'JGwWNGJdvx8',
