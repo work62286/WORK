@@ -15,7 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
             id: 'JGwWNGJdvx8',
             title: 'Music Video',
             thumbnail: `https://img.youtube.com/vi/JGwWNGJdvx8/maxresdefault.jpg`
+        },
+{
+            id: 'uLzdLHlta9E',
+            title: 'Music Video',
+            thumbnail: `https://img.youtube.com/vi/JGwWNGJdvx8/maxresdefault.jpg`
         }
+        
     ];
 
     // Video Grid Population
