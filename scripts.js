@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const videoProjects = [
         {
             id: 'dQw4w9WgXcQ',
-            title: 'Cinematic Weddidng Film',
+            title: 'Cinematic Wedding Film',
             thumbnail: `https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg`
         },
         {
