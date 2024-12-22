@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
             thumbnail: 'https://i.ytimg.com/vi/9PE7qN2gqEo/oar2.jpg?sqp=-oaymwEkCJEDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&rs=AOn4CLAl9Mt-KrXIH2plrwjq3rSppNB_eA'
         },
         {
-            id: 'JGwWNGJdvx8',
-            title: 'Music Video',
-            thumbnail: 'https://img.youtube.com/vi/JGwWNGJdvx8/maxresdefault.jpg'
+            id: 'uLzdLHlta9E',
+            title: 'Slide Clip Example',
+            thumbnail: 'https://i.ytimg.com/vi/uLzdLHlta9E/oar2.jpg?sqp=-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&rs=AOn4CLDB8ErwT3G6wqMqfQ-bwO4cAsKa9Q'
         },
         {
             id: 'DRRPul-CeqE',
