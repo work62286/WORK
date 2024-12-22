@@ -402,6 +402,28 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* Refresh Button */
+.refresh-container {
+    text-align: right;
+    margin-bottom: 1rem;
+}
+
+.refresh-button {
+    padding: 0.5rem 1rem;
+    background-color: var(--accent);
+    color: var(--primary);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.refresh-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
 /* Footer */
 .footer {
     padding: 2rem 0;
