@@ -38,8 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     };
                 }).filter(project => project !== null);
                 console.log('Parsed video projects:', videoProjects); // Debug log
+                const cachedVideoProjects = getCachedVideoProjects();
+                if (JSON.stringify(cachedVideoProjects) !== JSON.stringify(videoProjects)) {
+                    console.log('Cache invalidated'); // Debug log
+                    cacheVideoProjects(videoProjects);
+                }
                 populateVideoGrid(videoProjects);
-                cacheVideoProjects(videoProjects);
             })
             .catch(error => console.error('Error fetching videos:', error));
     };
