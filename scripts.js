@@ -12,14 +12,27 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
+            console.log('Fetched data:', data); // Debug log
             const parser = new DOMParser();
             const xml = parser.parseFromString(data.contents, 'text/xml');
             const items = xml.querySelectorAll('entry');
-            const videoProjects = Array.from(items).slice(0, MAX_RESULTS).map(item => ({
-                id: item.querySelector('yt\\:videoId').textContent,
-                title: item.querySelector('title').textContent,
-                thumbnail: item.querySelector('media\\:thumbnail').getAttribute('url')
-            }));
+            console.log('Parsed XML items:', items); // Debug log
+            const videoProjects = Array.from(items).slice(0, MAX_RESULTS).map(item => {
+                const videoIdElement = item.querySelector('yt\\:videoId');
+                const titleElement = item.querySelector('title');
+                const thumbnailElement = item.querySelector('media\\:thumbnail');
+                
+                if (!videoIdElement || !titleElement || !thumbnailElement) {
+                    console.error('Missing element in item:', item);
+                    return null;
+                }
+
+                return {
+                    id: videoIdElement.textContent,
+                    title: titleElement.textContent,
+                    thumbnail: thumbnailElement.getAttribute('url')
+                };
+            }).filter(project => project !== null);
             console.log('Parsed video projects:', videoProjects); // Debug log
             populateVideoGrid(videoProjects);
         })
