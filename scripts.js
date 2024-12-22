@@ -2,45 +2,66 @@ document.addEventListener('DOMContentLoaded', () => {
     const CHANNEL_ID = 'UCsFTeOmrtn4GOmZUHqdHUEg';
     const MAX_RESULTS = 20; // Increase the number of results to fetch more videos
     const PROXY_URL = 'https://api.allorigins.win/get?url=';
+    const FETCH_INTERVAL = 300000; // Fetch every 5 minutes (in milliseconds)
+    const CACHE_KEY = 'videoProjectsCache';
+    const CACHE_EXPIRY_KEY = 'videoProjectsCacheExpiry';
 
-    // Fetch videos from YouTube RSS feed using a proxy
-    fetch(`${PROXY_URL}${encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`)}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Fetched data:', data); // Debug log
-            const parser = new DOMParser();
-            const xml = parser.parseFromString(data.contents, 'text/xml');
-            const items = xml.getElementsByTagName('entry');
-            console.log('Parsed XML items:', items); // Debug log
-            const videoProjects = Array.from(items).slice(0, MAX_RESULTS).map(item => {
-                const videoIdElement = item.getElementsByTagName('yt:videoId')[0] || item.getElementsByTagName('yt\\:videoId')[0];
-                const titleElement = item.getElementsByTagName('title')[0];
-                const thumbnailElement = item.getElementsByTagName('media:thumbnail')[0] || item.getElementsByTagName('media\\:thumbnail')[0];
-                
-                if (!videoIdElement || !titleElement || !thumbnailElement) {
-                    console.error('Missing element in item:', item);
-                    return null;
+    const fetchVideos = () => {
+        // Fetch videos from YouTube RSS feed using a proxy
+        fetch(`${PROXY_URL}${encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`)}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
                 }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Fetched data:', data); // Debug log
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(data.contents, 'text/xml');
+                const items = xml.getElementsByTagName('entry');
+                console.log('Parsed XML items:', items); // Debug log
+                const videoProjects = Array.from(items).slice(0, MAX_RESULTS).map(item => {
+                    const videoIdElement = item.getElementsByTagName('yt:videoId')[0] || item.getElementsByTagName('yt\\:videoId')[0];
+                    const titleElement = item.getElementsByTagName('title')[0];
+                    const thumbnailElement = item.getElementsByTagName('media:thumbnail')[0] || item.getElementsByTagName('media\\:thumbnail')[0];
+                    
+                    if (!videoIdElement || !titleElement || !thumbnailElement) {
+                        console.error('Missing element in item:', item);
+                        return null;
+                    }
 
-                return {
-                    id: videoIdElement.textContent,
-                    title: titleElement.textContent,
-                    thumbnail: thumbnailElement.getAttribute('url')
-                };
-            }).filter(project => project !== null);
-            console.log('Parsed video projects:', videoProjects); // Debug log
-            populateVideoGrid(videoProjects);
-        })
-        .catch(error => console.error('Error fetching videos:', error));
+                    return {
+                        id: videoIdElement.textContent,
+                        title: titleElement.textContent,
+                        thumbnail: thumbnailElement.getAttribute('url')
+                    };
+                }).filter(project => project !== null);
+                console.log('Parsed video projects:', videoProjects); // Debug log
+                populateVideoGrid(videoProjects);
+                cacheVideoProjects(videoProjects);
+            })
+            .catch(error => console.error('Error fetching videos:', error));
+    };
+
+    const cacheVideoProjects = (videoProjects) => {
+        localStorage.setItem(CACHE_KEY, JSON.stringify(videoProjects));
+        localStorage.setItem(CACHE_EXPIRY_KEY, Date.now() + FETCH_INTERVAL);
+    };
+
+    const getCachedVideoProjects = () => {
+        const cachedData = localStorage.getItem(CACHE_KEY);
+        const cacheExpiry = localStorage.getItem(CACHE_EXPIRY_KEY);
+        if (cachedData && cacheExpiry && Date.now() < cacheExpiry) {
+            return JSON.parse(cachedData);
+        }
+        return null;
+    };
 
     // Populate Video Grid
     const populateVideoGrid = (videoProjects) => {
         const videoGrid = document.getElementById('video-grid');
+        videoGrid.innerHTML = ''; // Clear existing videos
         videoProjects.forEach(project => {
             const videoItem = document.createElement('div');
             videoItem.classList.add('video-item');
@@ -88,6 +109,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
+
+    // Check for cached data
+    const cachedVideoProjects = getCachedVideoProjects();
+    if (cachedVideoProjects) {
+        console.log('Using cached data'); // Debug log
+        populateVideoGrid(cachedVideoProjects);
+    } else {
+        // Initial fetch
+        fetchVideos();
+    }
+
+    // Periodically fetch videos
+    setInterval(fetchVideos, FETCH_INTERVAL);
 
     // Navigation Toggle
     const navToggle = document.querySelector('.nav-toggle');
